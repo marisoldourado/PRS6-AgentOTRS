@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { View, FlatList, Alert, StyleSheet, Text } from 'react-native';
 import { List, Button, Avatar } from 'react-native-paper';
-import { Ionicons as Icon } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons'; 
 
-const data = [1,2,3];
+
+const data = [1, 2, 3];
 
 const styles = StyleSheet.create({
       quizAttrContent:{
@@ -48,22 +49,23 @@ const styles = StyleSheet.create({
   });
 
 const MyComponent = () => (
-  <View style={{ flex: 1 }}>
+  <View style={{ flex: 1, backgroundColor: '#2C2B3F' }}>
     <FlatList 
         data={data}
         renderItem ={(item) =>   
-            <View style={{ borderRadius: 5, borderWidth: 1, margin: 0, borderColor: '#e0e0e0' }}>
+            <View style={{ padding: 8, borderRadius: 5, margin: 8, borderColor: '#FFF', backgroundColor: '#35344c' }}>
                 <List.Item              
-                titleStyle={{ fontFamily: 'Ubuntu_700Bold',}}
-                descriptionStyle={{ fontFamily: 'Ubuntu_300Light' }}
+                titleStyle={{ fontFamily: 'Ubuntu_400Regular', color: '#FFF'}}
+                descriptionStyle={{ fontFamily: 'Ubuntu_300Light', color: '#808790' }}
                 title={"Ticket#1234"}
                 description="Problemas com o ambiente de produção: Falha ao enviar e-mails."
                 left={
                     props =>
                         <View style={{ justifyContent: 'center', alignItems: 'center' }}> 
-                            <Avatar.Image size={64} source=
+                            {/* <Avatar.Image size={64} source=
                                 {{ uri:('https://image.freepik.com/fotos-gratis/smooth-elegant-gradient-purple-background_1258-1372.jpg')}} 
-                            />
+                            /> */}
+                            <Fontisto name="ticket" size={24} color="#35B5AD" />
                         </View>
                     }
                 />

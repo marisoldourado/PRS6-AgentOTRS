@@ -12,7 +12,7 @@ import { Alert, View, StyleSheet, Text, TouchableOpacity, TextInput, Image, Keyb
 
 import { useNavigation }from '@react-navigation/native'
 
-const logo =  require('../../assets/purple_logo.png')
+const logo =  require('../../assets/logo_new.png')
 // import logo from '../../assets/purple_logo.png'
 //import api from '../services/api'
 
@@ -30,7 +30,7 @@ export default function Login( ) {
         // disparar um Alert caso os dados estejam incorretos
 
         //navigation.navigate('Navigator', { token: response.data.result })
-        navigation.navigate('Tickets')
+        navigation.navigate('Navigator')
 
     }
 
@@ -72,7 +72,7 @@ export default function Login( ) {
 
             <TouchableOpacity 
                 onPress={handleLogin} 
-                style={styles.button} >
+                style={styles.button}>
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
             <Text style={styles.forgotPasswd}>Esqueceu a senha?</Text>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#FFF'
+        backgroundColor: '#2C2B3F'
     },
 
     form: {
@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Ubuntu_300Light',
     },
     forgotPasswd: {
-        color: '#6F089C',
+        color: '#35B5AD',
         marginBottom: 8,
         textAlign: 'right',
         fontFamily: 'Ubuntu_300Light',
     },
 
     title: {
-        color: '#363636',
+        color: '#e6e1e4',
         fontSize: 28,
         marginBottom: 8,
         top: 10,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
 
     subtitle: {
-        color: '#000',
+        color: '#FFF',
         fontSize: 24,
         // fontWeight: 'bold',
         marginBottom: 20,
@@ -126,12 +126,12 @@ const styles = StyleSheet.create({
 
     input: {
         borderWidth: 1,
-        borderColor: '#000',
-        backgroundColor: '#FFF',
+        borderColor: '#35344c',
+        backgroundColor: '#35344c',
         paddingHorizontal: 20,
         fontSize: 16,
         fontFamily: 'Ubuntu_300Light',
-        color: '#320346',
+        color: '#FFF',
         height: 45,
         marginBottom: 20,
         borderRadius: 5,
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     
     button: {
         height: 45,
-        backgroundColor: '#2F063C',
+        backgroundColor: '#35B5AD',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 5,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 
     logo: {
         alignSelf: 'flex-start',
-        height: 130,
+        height: 100,
         width: 180,
         resizeMode: 'contain'
     }

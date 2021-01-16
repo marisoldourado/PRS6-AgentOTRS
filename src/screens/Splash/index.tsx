@@ -10,7 +10,7 @@ import { KeyboardAvoidingView, StatusBar, Platform, StyleSheet, Image } from 're
 
 import { useNavigation }from '@react-navigation/native'
 
-const logo =  require('../../assets/purple_logo.png')
+const logo =  require('../../assets/logo_new.png')
 
 export default function Splash() {
 
@@ -45,7 +45,7 @@ export default function Splash() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#2C2B3F',
         justifyContent: 'center',
         alignItems: 'center',
     },

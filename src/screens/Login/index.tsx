@@ -8,9 +8,10 @@
 
 import React, { useState } from 'react'
 import { AppLoading } from 'expo'
-import { Alert, View, StyleSheet, Text, TouchableOpacity, TextInput, Image, KeyboardAvoidingView, Platform, StatusBar } from 'react-native'
-
+import { ActivityIndicator, Alert, View, StyleSheet, Text, TouchableOpacity, TextInput, Image, KeyboardAvoidingView, Platform, StatusBar } from 'react-native'
 import { useNavigation }from '@react-navigation/native'
+
+import api from '../../services/api';
 
 const logo =  require('../../assets/logo_new.png')
 // import logo from '../../assets/purple_logo.png'
@@ -23,15 +24,53 @@ export default function Login( ) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
 
     async function handleLogin() {
 
         // realizar chamada na api para validar usuario e senha
         // disparar um Alert caso os dados estejam incorretos
+        setLoading(true);
 
-        //navigation.navigate('Navigator', { token: response.data.result })
-        navigation.navigate('Navigator')
+        const params = {
+            // UserLogin: "dsilva", 
+            // Password: "dsilva123",
+            UserLogin: username, 
+            Password: password,
+        }
 
+        const response = await api.post('/Session', params )
+        .then()
+        .catch(error => {
+            Alert.alert(
+                'failError',
+                error.message,
+                [
+                    { text: 'buttonTryAgain', onPress: () => handleLogin() },
+                    { text: 'buttonOK' }
+                ]
+            )
+
+            setLoading(false)
+        })
+
+        console.log(response.data.SessionID);
+        if( response.data.SessionID ){
+            navigation.navigate('Navigator', { token: response.data.SessionID })
+        }
+        else {
+
+            Alert.alert(
+                'Falha',
+                'Falha de autenticação!',
+                [
+                    { text: 'OK' }
+                ]
+            )
+            setLoading(false)
+
+        }
+        //navigation.navigate('Navigator')
     }
 
     return (
@@ -41,26 +80,26 @@ export default function Login( ) {
         enabled={Platform.OS === 'ios'}>
 
         <StatusBar
-            backgroundColor="#320346"
+            backgroundColor="#35344c"
             barStyle="light-content" />
 
         <Image source={logo} style={styles.logo} />
 
         <View style={styles.form}>
-            <Text style={styles.title}>Help Desk - Atendente</Text>
+            <Text style={styles.title}>OTRS - Atendente</Text>
             <Text style={styles.subtitle}>Login</Text>
 
-            <Text style={styles.label}>User</Text>
+            <Text style={styles.label}>Usuário</Text>
             <TextInput 
                 style={styles.input}
-                placeholder="user.name"
+                placeholder="usuário"
                 placeholderTextColor="#999"
                 autoCorrect={false}
                 value={username}
                 onChangeText={setUsername}
 
             />
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>Senha</Text>
             <TextInput 
                 style={styles.input}
                 placeholder="**********"
@@ -73,10 +112,17 @@ export default function Login( ) {
             <TouchableOpacity 
                 onPress={handleLogin} 
                 style={styles.button}>
-                <Text style={styles.buttonText}>Login</Text>
+                <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
             <Text style={styles.forgotPasswd}>Esqueceu a senha?</Text>
 
+            <ActivityIndicator 
+                animating 
+                size="large"
+                color={ loading ? '#F5F5F5' : '#2C2B3F' }
+                hidesWhenStopped={true}
+                style={ styles.loading } 
+            />       
         </View>
 
     </KeyboardAvoidingView>
@@ -107,7 +153,6 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontFamily: 'Ubuntu_300Light',
     },
-
     title: {
         color: '#e6e1e4',
         fontSize: 28,
@@ -115,7 +160,6 @@ const styles = StyleSheet.create({
         top: 10,
         fontFamily: 'Ubuntu_300Light',
     },
-
     subtitle: {
         color: '#FFF',
         fontSize: 24,
@@ -123,7 +167,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         fontFamily: 'Ubuntu_700Bold'
     },
-
     input: {
         borderWidth: 1,
         borderColor: '#35344c',
@@ -136,7 +179,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 5,
     },
-    
     button: {
         height: 45,
         backgroundColor: '#35B5AD',
@@ -146,17 +188,18 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontFamily: 'Ubuntu_300Light',
     },
-
     buttonText: {
         color: '#FFF',
         fontSize: 16,
         fontFamily: 'Ubuntu_700Bold',
     },
-
     logo: {
         alignSelf: 'flex-start',
         height: 100,
         width: 180,
         resizeMode: 'contain'
+    },
+    loading: {
+        top: 40
     }
 })

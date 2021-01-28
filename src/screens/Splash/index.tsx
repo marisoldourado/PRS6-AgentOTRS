@@ -24,7 +24,6 @@ export default function Splash() {
         
     })
 
-
     return (
 
         <KeyboardAvoidingView
@@ -33,7 +32,7 @@ export default function Splash() {
             enabled={Platform.OS === 'ios'}>
 
             <StatusBar
-                backgroundColor="#320346"
+                backgroundColor="#35344c"
                 barStyle="light-content" />
 
             <Image source={logo} style={styles.logo} />

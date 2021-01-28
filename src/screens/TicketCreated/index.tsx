@@ -10,20 +10,19 @@ import { KeyboardAvoidingView, StatusBar, Platform, StyleSheet, Text } from 'rea
 import { Fontisto } from '@expo/vector-icons'; 
 import { useNavigation }from '@react-navigation/native'
 
-const logo =  require('../../assets/logo_new.png')
-
 export default function TicketCreated() {
 
     const navigation = useNavigation();
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     setTimeout(() => {
-    //         navigation.navigate('Login')
-    //     }, 2000)
+        console.log("aaaaaa");
+
+        setTimeout(() => {
+            navigation.navigate('Tickets')
+        }, 5000)
         
-    // })
-
+    })
 
     return (
 
@@ -33,7 +32,7 @@ export default function TicketCreated() {
             enabled={Platform.OS === 'ios'}>
 
             <StatusBar
-                backgroundColor="#320346"
+                backgroundColor="#2C2B3F"
                 barStyle="light-content" />
 
             <Fontisto name="check" size={48} color="#35B5AD" />

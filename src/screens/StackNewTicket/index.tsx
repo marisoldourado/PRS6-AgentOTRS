@@ -11,6 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { StyleSheet } from 'react-native'
 
 import New from '../NewTicket'
+import Created from '../TicketCreated'
 
 const Stack = createStackNavigator()
 
@@ -21,6 +22,21 @@ export default function StackNewTicket() {
             <Stack.Screen 
                 name="Novo chamado"
                 component={New}
+                // initialParams={ route.params }
+                options={{ 
+                    headerStyle: {
+                        backgroundColor: '#2C2B3F',
+                    },
+                    headerTintColor: '#FFF',
+                    headerTitleStyle: {
+                        fontFamily: 'Ubuntu_400Regular'
+                    },
+                    headerLeft: () => null
+                }}
+            />
+             <Stack.Screen 
+                name="Created"
+                component={Created}
                 // initialParams={ route.params }
                 options={{ 
                     headerStyle: {

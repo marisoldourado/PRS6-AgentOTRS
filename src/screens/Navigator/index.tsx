@@ -33,7 +33,7 @@ export default function Navigator() {
             }}
         >
 
-            <Tab.Screen name="Alerts" component={StackTickets} 
+            <Tab.Screen name="Tickets" component={StackTickets} 
                 // initialParams={ route.params }
                 options={{
                     tabBarLabel: 'Chamados',
@@ -43,7 +43,7 @@ export default function Navigator() {
                 }}
             />
             
-            <Tab.Screen name="Hosts" component={StackNew}
+            <Tab.Screen name="New" component={StackNew}
                // initialParams={ route.params }
                 options={{
                     tabBarLabel: 'Novo chamado',
